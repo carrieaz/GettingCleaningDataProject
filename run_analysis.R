@@ -40,6 +40,12 @@ meanD <- allD[, grep("mean|std|^subject$|^activity$", names(allD))];
 as.vector(meanD$subject);
 as.vector(meanD$activity);
 
+# Install package 'dplyr' if not exists by 'install.packages("dplyr")'
+library(dplyr);
+groupD <- group_by(meanD, subject, activity);
+summD <- summarise_each(groupD, "mean");
+write.table(summD, file="run_analysis_data.txt", row.names=FALSE);
+
 
 
 
